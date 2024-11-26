@@ -1,0 +1,44 @@
+create database restaurante;
+use restaurante;
+
+create table clientes(
+id_cliente int auto_increment primary key,
+nome varchar(100) not null,
+telefone varchar(15)
+);
+
+create table pratos(
+id_prato int auto_increment primary key,
+nome varchar (100) not null,
+preco decimal(10,2)
+);
+
+create table pedidos(
+id_pedido int auto_increment primary key,
+data_pedido datetime,
+id_cliente int,
+foreign key (id_cliente) references clientes (id_cliente)
+);
+
+create table itens_pedido(
+id_item int auto_increment primary key,
+quantidade int not null,
+id_pedido int,
+id_prato int,
+foreign key (id_pedido) references pedidos (id_pedido),
+foreign key (id_prato) references pratos (id_prato)
+);
+
+insert into clientes(nome, telefone) values
+("george russel","(79) 98345-7269"),
+("alexander albon","(94) 99185-3725"),
+("carlos sainz jr","(87) 97142-3576"),
+("fernando alonso","(46) 98720-2667"),
+("max verstappen","(61) 98421-9701");
+
+insert into pratos (nome, preco) values 
+("hamburguer","48,99"),
+("pad kraprao","76,87"),
+("pizza","89,99"),
+("paelha","79,66"),
+("sopa de tomate","56,99");
